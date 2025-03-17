@@ -24,3 +24,28 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+button {
+  padding: 10px 20px; /* 內距，讓按鈕有舒適的空間 */
+  background-color: #4CAF50; /* 綠色主色調，吸引目光 */
+  color: white; /* 白色文字，與背景對比明顯 */
+  border: none; /* 移除邊框，乾淨簡潔 */
+  border-radius: 5px; /* 圓角設計，現代感十足 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 輕微陰影，增加立體感 */
+  cursor: pointer; /* 滑鼠懸停時顯示手型，提升互動性 */
+  transition: all 0.3s ease; /* 平滑的動畫效果 */
+  display: flex; /* 使用 flex 排列圖標和文字 */
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+button:hover {
+  background-color: #45a049; /* 懸停時顏色變深，視覺反饋 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* 陰影加深，突出效果 */
+}
+
+button:active {
+  transform: translateY(2px); /* 點擊時下沉，模擬按下感 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 陰影減弱，增加真實感 */
+}
