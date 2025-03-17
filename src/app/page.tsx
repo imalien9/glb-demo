@@ -124,7 +124,9 @@ function Model() {
 function AnimatedModel() {
   const group = useRef(null)
   // 載入 glb 檔案，假設檔案位於 public 資料夾中
-  const { scene, animations } = useGLTF('/BoxAnimated.glb')
+  // const { scene, animations } = useGLTF('/BoxAnimated.glb')
+  const { scene, animations } = useGLTF('/animated_model.glb')
+  
   // 透過 useAnimations hook 取得 actions，並綁定到 group 上
   const { actions } = useAnimations(animations, group)
 
