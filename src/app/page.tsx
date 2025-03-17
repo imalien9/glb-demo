@@ -45,9 +45,11 @@ function AnimatedModel({ color }: AnimatedModelProps) {
   // 更新模型顏色
   useEffect(() => {
     scene.traverse((child) => {
+      console.log(child);
       if (isMesh(child)) {
         console.log(child.name);
         const material = child.material as THREE.MeshStandardMaterial;
+        
         if (color) {
           material.color.set(color); // 設置為指定顏色
         } else {
@@ -73,7 +75,7 @@ export default function Home() {
         <ambientLight intensity={1.0} />
         <directionalLight position={[10, 10, 5]} intensity={2} />
         <AnimatedModel color={selectedColor} />
-        <OrbitControls enableZoom={true} enablePan={false} />
+        <OrbitControls enableZoom={true} enablePan={true} />
       </Canvas>
 
       {/* 顏色選擇介面 */}
