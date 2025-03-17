@@ -9,14 +9,15 @@ function isMesh(obj: Object3D): obj is Mesh {
   return 'isMesh' in obj && obj.isMesh === true;
 }
 
-import { Material, Color } from 'three';
-function setColor(material: Material | Material[], color: Color) {
-  if (Array.isArray(material)) {
-    material.forEach(m => m.color.copy(color));
-  } else {
-    material.color.copy(color);
-  }
-}
+import * as THREE from 'three';
+// import { Material, Color } from 'three';
+// function setColor(material: Material | Material[], color: Color) {
+//   if (Array.isArray(material)) {
+//     material.forEach(m => m.color.copy(color));
+//   } else {
+//     material.color.copy(color);
+//   }
+// }
 
 // 定義顏色選項
 const colorOptions = {
@@ -46,10 +47,11 @@ function AnimatedModel({ color }: AnimatedModelProps) {
     scene.traverse((child) => {
       if (isMesh(child)) {
         console.log(child.name);
+        const material = child.material as THREE.Material;
         if (color) {
-          child.material.color.set(color); // 設置為指定顏色
+          material.color.set(color); // 設置為指定顏色
         } else {
-          child.material.color.set(child.material.originalColor || child.material.color); // 恢復原始顏色
+          // material.color.set(child.material.originalColor || child.material.color); // 恢復原始顏色
         }
       }
     });
@@ -63,7 +65,7 @@ function AnimatedModel({ color }: AnimatedModelProps) {
 }
 
 export default function Home() {
-  const [selectedColor, setSelectedColor] = useState(null); // 預設為原始顏色
+  const [selectedColor, setSelectedColor] = useState<number | null>(null); // 預設為原始顏色
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
