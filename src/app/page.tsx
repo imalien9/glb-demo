@@ -47,7 +47,7 @@ function AnimatedModel({ color }: AnimatedModelProps) {
     scene.traverse((child) => {
       if (isMesh(child)) {
         console.log(child.name);
-        const material = child.material as THREE.Material;
+        const material = child.material as THREE.MeshStandardMaterial;
         if (color) {
           material.color.set(color); // 設置為指定顏色
         } else {
