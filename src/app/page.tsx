@@ -11,8 +11,10 @@ const colorOptions = {
   yellow: 0xffff00,
   blue: 0x0000ff,
 };
-
-function AnimatedModel({ color }) {
+interface AnimatedModelProps {
+  color: number | string | null;
+}
+function AnimatedModel({ color }: AnimatedModelProps) {
   const group = useRef(null);
   const { scene, animations } = useGLTF('/animated_model.glb'); // 替換為您的 GLB 檔案路徑
   const { actions } = useAnimations(animations, scene);
