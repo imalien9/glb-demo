@@ -4,6 +4,20 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
 
+import { Object3D, Mesh } from 'three';
+function isMesh(obj: Object3D): obj is Mesh {
+  return 'isMesh' in obj && obj.isMesh === true;
+}
+
+import { Material, Color } from 'three';
+function setColor(material: Material | Material[], color: Color) {
+  if (Array.isArray(material)) {
+    material.forEach(m => m.color.copy(color));
+  } else {
+    material.color.copy(color);
+  }
+}
+
 // 定義顏色選項
 const colorOptions = {
   original: 0xffffff, // 原始顏色
@@ -30,7 +44,7 @@ function AnimatedModel({ color }: AnimatedModelProps) {
   // 更新模型顏色
   useEffect(() => {
     scene.traverse((child) => {
-      if (child.isMesh) {
+      if (isMesh(child)) {
         console.log(child.name);
         if (color) {
           child.material.color.set(color); // 設置為指定顏色
